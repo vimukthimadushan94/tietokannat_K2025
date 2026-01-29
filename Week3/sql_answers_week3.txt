@@ -1,0 +1,39 @@
+10. Kyselyjä arviointitietokannasta (Vertaisarviointi)
+
+1) Tulosta kaikki opiskelijat, joilla on tietokannassa hylätty arvosana
+
+SELECT Etunimi,Sukunimi FROM opiskelija op
+JOIN arviointi ar ON op.idOpiskelija=ar.idOpiskelija
+JOIN opintojakso oj ON ar.idOpintojakso=oj.idOpintojakso
+WHERE Arvosana<3 AND oj.Nimi LIKE '%Tietokannat%';
+
+
+2) Tulosta kaikki Fysiikka 3-kurssin hyväksytysti suorittaneet
+
+SELECT Etunimi,Sukunimi FROM opiskelija op
+JOIN arviointi ar ON op.idOpiskelija=ar.idOpiskelija
+JOIN opintojakso oj ON ar.idOpintojakso=oj.idOpintojakso
+WHERE Arvosana>=3 AND oj.Nimi LIKE '%Fysiikka 3%';
+
+
+3) Mille kursseille Hessu on osallistunut ?
+
+SELECT Nimi FROM opintojakso oj
+JOIN arviointi ar ON ar.idOpintojakso=oj.idOpintojakso
+JOIN opiskelija op ON ar.idOpiskelija=op.idOpiskelija
+WHERE Etunimi LIKE "Hessu%";
+
+
+4) Mikä on Akun opintosuoritusten keskiarvo ?
+
+SELECT AVG(Arvosana) FROM arviointi ar
+JOIN opiskelija op ON ar.idOpiskelija=op.idOpiskelija
+WHERE Etunimi LIKE "Akku%"; 
+
+
+5) Millä opintojaksoilla ei ole yhtään suoritusmerkintää ? (Vihje: Tarvitset tässä left tai right joinia...)
+
+SELECT Nimi,Arvosana
+FROM arviointi ar
+RIGHT JOIN opintojakso oj ON ar.idOpintojakso=oj.idOpintojakso
+WHERE Arvosana IS NULL;
