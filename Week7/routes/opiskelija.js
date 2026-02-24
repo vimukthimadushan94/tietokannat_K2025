@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a opiskelijsta');
-});
+const opiskelijaController = require('../controllers/opiskelijaController');
+
+router.get('/', opiskelijaController.getAllOpiskelijat);
+router.get('/:id', opiskelijaController.getOpiskelijaById);
+router.post('/', opiskelijaController.createOpiskelija);
+router.put('/:id', opiskelijaController.updateOpiskelija);
+router.delete('/:id', opiskelijaController.deleteOpiskelija);
 
 module.exports = router;
