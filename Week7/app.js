@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var opiskelijaRouter = require('./routes/opiskelija');
 var opintojaksoRouter = require('./routes/opintojakso');
 var arvosanaRouter = require('./routes/arvosana');
+var userRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
@@ -27,6 +28,7 @@ app.use('/users', usersRouter);
 app.use('/opiskelija', opiskelijaRouter);
 app.use('/opintojakso', opintojaksoRouter);
 app.use('/arvosana', arvosanaRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
